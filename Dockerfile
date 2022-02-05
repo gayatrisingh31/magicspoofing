@@ -1,10 +1,8 @@
 FROM python:3.8-alpine
-RUN mkdir /app
 WORKDIR /app
-COPY requirements.txt requirements.txt
-#COPY src/requirements.txt ./
-RUN pip3 install -r requirements.txt
 COPY . .
+RUN /usr/local/bin/python -m pip install --no-cache-dir --upgrade pip \
+    && pip3 install --no-cache-dir -r requirements.txt
 CMD ["python", "magicspoofmail.py"]
 EXPOSE 8080
 
